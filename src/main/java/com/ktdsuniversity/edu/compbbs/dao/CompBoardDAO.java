@@ -7,4 +7,5 @@ import com.ktdsuniversity.edu.compbbs.vo.CompBoardVO;
 public interface CompBoardDAO {
 	public int getCompBoardAllCount();
 	public List<CompBoardVO> getAllCompBoardList();
+	public int createOneCompBoard(CompBoardVO compBoardVO);
 }

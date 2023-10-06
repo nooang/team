@@ -7,7 +7,11 @@
 <title>기업 게시판 임시</title>
 </head>
 <body>
-	게시글 수: ${compBoardListVO.compBoardCnt}
-	게시굴 수2: ${compBoardListVO.compBoardList.size()}
+	<div>
+		게시글 수: ${compBoardListVO.compBoardCnt}
+	</div>
+	<div>
+		게시굴 수2: ${compBoardListVO.compBoardList.size()}
+	</div>
 </body>
 </html>
