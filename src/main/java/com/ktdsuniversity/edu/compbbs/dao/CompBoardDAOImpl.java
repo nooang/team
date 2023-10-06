@@ -18,12 +18,12 @@ public class CompBoardDAOImpl extends SqlSessionDaoSupport implements CompBoardD
 	}
 	
 	@Override
-	public int getBoardAllCount() {
+	public int getCompBoardAllCount() {
 		return getSqlSession().selectOne("getBoardAllCount");
 	}
 
 	@Override
-	public List<CompBoardVO> compBoardList() {
+	public List<CompBoardVO> getAllCompBoardList() {
 		return getSqlSession().selectList("CompBoardVO");
 	}
 
