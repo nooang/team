@@ -35,9 +35,16 @@ public class CompBoardController {
 	@PostMapping("company/board/createcompboard")
 	public ModelAndView createNewCompBoard(@ModelAttribute CompBoardVO compBoardVO) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("company/createcompboard");
-		mav.addObject("compBoardVO", compBoardVO);
+		boolean isSuccess = compBoardService.createNewCompBoard(compBoardVO);
 		
-		return mav;
+		if (isSuccess) {
+			mav.setViewName("company/success");
+			return mav;
+		}
+		else {
+			mav.setViewName("company/createcompboard");
+			mav.addObject("compBoardVO", compBoardVO);
+			return mav;			
+		}
 	}
 }

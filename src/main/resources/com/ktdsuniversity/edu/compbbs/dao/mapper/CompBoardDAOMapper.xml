@@ -27,4 +27,43 @@
 		     , DEL_YN
 		 FROM COMPPOST
 	</select>
+	<insert id="createOneCompBoard"
+			parameterType="com.ktdsuniversity.edu.compbbs.vo.CompBoardVO">
+		INSERT INTO COMPANY_POST (
+		  COMPANY_POST_ID
+		, POST_WRITER_ID
+		, BOARD_ID
+		, POST_TITLE
+		, POST_CONTENT
+		, POST_DATE
+		, RECRUIT_START_DATE
+		, RECRUIT_END_DATE
+		, RECRUIT_PROGRESS_YN
+		, RECRUIT_TYPE
+		, MIN_CAREER_YEAR
+		, MAX_CAREER_YEAR
+		, VIEW_CNT
+		, LIKE_CNT
+		, DELETE_YN
+		, ALGORITHM_TIER_ID
+		, ALGORITHM_PROGRESS_STATUS)
+		VALUES (
+		  'CP-' || TO_CHAR(SYSDATE, 'YYYY-MM-DD') || '-' || LPAD(SEQ_COMPANY_POST_PK.NEXTVAL, 6, 0)
+		, 1
+		, 'CM-20231009-000002'
+		, #{postTitle}
+		, #{postCont}
+		, SYSDATE
+		, NULL
+		, NULL
+		, NULL
+		, NULL
+		, NULL
+		, NULL
+		, 0
+		, 0
+		, 'N'
+		, 'HARD'
+		, 'A')
+	</insert>
 </mapper>

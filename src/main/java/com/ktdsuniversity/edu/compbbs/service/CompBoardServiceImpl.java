@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ktdsuniversity.edu.compbbs.dao.CompBoardDAO;
 import com.ktdsuniversity.edu.compbbs.vo.CompBoardListVO;
+import com.ktdsuniversity.edu.compbbs.vo.CompBoardVO;
 
 @Service
 public class CompBoardServiceImpl implements CompBoardService {
@@ -18,5 +19,12 @@ public class CompBoardServiceImpl implements CompBoardService {
 		compBoardListVO.setCompBoardList(compBoardDAO.getAllCompBoardList());
 		return compBoardListVO;
 	}
+
+	@Override
+	public boolean createNewCompBoard(CompBoardVO compBoardVO) {
+		return compBoardDAO.createOneCompBoard(compBoardVO) > 0;
+	}
+	
+	
 
 }
