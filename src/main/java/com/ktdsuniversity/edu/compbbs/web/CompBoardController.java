@@ -27,12 +27,12 @@ public class CompBoardController {
 		return mav;
 	}
 	
-	@GetMapping("company/board/createcompboard")
+	@GetMapping("/company/board/createcompboard")
 	public String createNewCompBoard() {
 		return "company/createcompboard";
 	}
 	
-	@PostMapping("company/board/createcompboard")
+	@PostMapping("/company/board/createcompboard")
 	public ModelAndView createNewCompBoard(@ModelAttribute CompBoardVO compBoardVO) {
 		ModelAndView mav = new ModelAndView();
 		boolean isSuccess = compBoardService.createNewCompBoard(compBoardVO);

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ktdsuniversity.edu.bookmark.dao.BookmarkDAO">
+	<resultMap type="com.ktdsuniversity.edu.bookmark.vo.BookmarkVO" id="bookmarkVOMap">
+		<id column="BOOKMARK_ID" property="bookmarkId" />
+		<result column="GENERAL_MEMBER_ID" property="generalMemberId" />
+		<result column="BOARD_ID" property="boardId" />
+		<result column="POST_ID" property="postId" />
+		<result column="BOOKMARK_YN" property="bookmarkYn" />
+		<association property="generalMemberVO"
+					 javaType="com.ktdsuniversity.edu.generalmember.vo.GeneralMemberVO">
+			<id column="GENERAL_MEMBER_ID" property="generalMemberId" />
+			<result column="SELF_INTRO" property="selfIntro" />
+			<result column="JOB_ID" property="jobId" />
+			<result column="REGION" property="region" />
+			<result column="TIER_ID" property="tierId" />
+			<result column="GITHUB_URL" property="githubUrl" />
+			<result column="EMAIL" property="email" />
+		</association>
+		<association property="CommonVO"
+					 javaType="com.ktdsuniversity.edu.common.vo.CommonVO">
+			<id column="CODE_ID" property="codeId" />
+			<result column="CODE_TYPE" property="codeType" />
+			<result column="CODE_CONTENT" property="codeContent" />
+		</association>
+		<association property="CompBoardVO"
+					 javaType="com.ktdsuniversity.edu.compbbs.vo.CompBoardVO">
+			<id column="COMPANY_POST_ID" property="compPostId" />
+			<result column="POST_WRITER_ID" property="postWriId" />
+			<result column="BOARD_ID" property="boardId" />
+			<result column="POST_TITLE" property="postTitle" />
+			<result column="POST_CONTENT" property="postCont" />
+			<result column="POST_DATE" property="crtDt" />
+			<result column="RECRUIT_START_DATE" property="recrStDt" />
+			<result column="RECRUIT_END_DATE" property="recrFinDt" />
+			<result column="RECRUIT_PROGRESS_YN" property="recrProgVn" />
+			<result column="RECRUIT_TYPE" property="recrForm" />
+			<result column="MIN_CAREER_YEAR" property="minExpYear" />
+			<result column="MAX_CAREER_YEAR" property="maxExpYear" />
+			<result column="VIEW_CNT" property="viewCnt" />
+			<result column="LIKE_CNT" property="likeCnt" />
+			<result column="DELETE_YN" property="delYn" />
+		</association>
+	</resultMap>
+	<select id="getAllBookmark"
+			resultMap="bookmarkVOMap">
+		SELECT GM.GENERAL_MEMBER_ID
+		     , GM.SELF_INTRO
+		     , GM.JOB_ID
+		     , GM.REGION
+		     , GM.TIER_ID
+		     , GM.GITHUB_URL
+		     , GM.EMAIL
+		     , B.BOOKMARK_ID
+		     , B.GENERAL_MEMBER_ID
+		     , B.BOARD_ID
+		     , B.POST_ID
+		     , B.BOOKMARK_YN
+		     , C.CODE_ID
+		     , C.CODE_TYPE
+		     , C.CODE_CONTENT
+		     , CP.COMPANY_POST_ID
+		     , CP.POST_WRITER_ID
+		     , CP.BOARD_ID
+		     , CP.POST_TITLE
+		     , CP.POST_CONTENT
+		     , CP.POST_DATE
+		     , CP.RECRUIT_START_DATE
+		     , CP.RECRUIT_END_DATE
+		     , CP.RECRUIT_PROGRESS_YN
+		     , CP.RECRUIT_TYPE
+		     , CP.MIN_CAREER_YEAR
+		     , CP.MAX_CAREER_YEAR
+		     , CP.VIEW_CNT
+		     , CP.LIKE_CNT
+		     , CP.DELETE_YN
+		  FROM GENERAL_MEMBER GM
+		 INNER JOIN BOOKMARK B
+		    ON B.GENERAL_MEMBER_ID = GM.GENERAL_MEMBER_ID 
+		 INNER JOIN COMMON C
+		    ON B.BOARD_ID = C.CODE_ID 
+		 INNER JOIN COMPANY_POST CP
+		    ON CP.COMPANY_POST_ID = B.POST_ID 
+	</select>
+	<select id="getBookmarkAllCount"
+			resultType="_int">
+		SELECT COUNT(1)
+		  FROM GENERAL_MEMBER GM
+		 INNER JOIN BOOKMARK B
+		    ON B.GENERAL_MEMBER_ID = GM.GENERAL_MEMBER_ID 
+		 INNER JOIN COMMON C
+		    ON B.BOARD_ID = C.CODE_ID 
+		 INNER JOIN COMPANY_POST CP
+		    ON CP.COMPANY_POST_ID = B.POST_ID 
+		 WHERE B.BOARD_ID = 'CM-20231009-000002'
+	</select>
+	<select id="getOneBookmark"
+			parameterType="string"
+			resultMap="bookmarkVOMap">
+		SELECT GM.GENERAL_MEMBER_ID
+		     , GM.SELF_INTRO
+		     , GM.JOB_ID
+		     , GM.REGION
+		     , GM.TIER_ID
+		     , GM.GITHUB_URL
+		     , GM.EMAIL
+		     , B.BOOKMARK_ID
+		     , B.GENERAL_MEMBER_ID
+		     , B.BOARD_ID
+		     , B.POST_ID
+		     , B.BOOKMARK_YN
+		     , C.CODE_ID
+		     , C.CODE_TYPE
+		     , C.CODE_CONTENT
+		     , CP.COMPANY_POST_ID
+		     , CP.POST_WRITER_ID
+		     , CP.BOARD_ID
+		     , CP.POST_TITLE
+		     , CP.POST_CONTENT
+		     , CP.POST_DATE
+		     , CP.RECRUIT_START_DATE
+		     , CP.RECRUIT_END_DATE
+		     , CP.RECRUIT_PROGRESS_YN
+		     , CP.RECRUIT_TYPE
+		     , CP.MIN_CAREER_YEAR
+		     , CP.MAX_CAREER_YEAR
+		     , CP.VIEW_CNT
+		     , CP.LIKE_CNT
+		     , CP.DELETE_YN
+		  FROM GENERAL_MEMBER GM
+		 INNER JOIN BOOKMARK B
+		    ON B.GENERAL_MEMBER_ID = GM.GENERAL_MEMBER_ID 
+		 INNER JOIN COMMON C
+		    ON B.BOARD_ID = C.CODE_ID 
+		 INNER JOIN COMPANY_POST CP
+		    ON CP.COMPANY_POST_ID = B.POST_ID 
+		 WHERE B.BOARD_ID = #{compboardVO.boardId}
+	</select>
+</mapper>

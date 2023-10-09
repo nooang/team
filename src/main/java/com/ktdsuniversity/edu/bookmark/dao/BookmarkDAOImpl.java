@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ktdsuniversity.edu.bookmark.vo.BookmarkVO;
+import com.ktdsuniversity.edu.compbbs.vo.CompBoardVO;
 
 @Repository
 public class BookmarkDAOImpl extends SqlSessionDaoSupport implements BookmarkDAO {
@@ -25,6 +26,11 @@ public class BookmarkDAOImpl extends SqlSessionDaoSupport implements BookmarkDAO
 	@Override
 	public List<BookmarkVO> getAllBookmark() {
 		return getSqlSession().selectList("getAllBookmark");
+	}
+
+	@Override
+	public CompBoardVO getOneBookmark(String id) {
+		return getSqlSession().selectOne("getOneBookmark", id);
 	}
 
 
