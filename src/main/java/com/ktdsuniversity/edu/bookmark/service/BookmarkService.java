@@ -1,5 +1,7 @@
 package com.ktdsuniversity.edu.bookmark.service;
 
-public interface BookmarkService {
+import com.ktdsuniversity.edu.bookmark.vo.BookmarkListVO;
 
+public interface BookmarkService {
+	public BookmarkListVO getAllBookmark();
 }

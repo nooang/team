@@ -4,19 +4,19 @@ import java.util.List;
 
 public class BookmarkListVO {
 	private int bookmarkCnt;
+	private List<BookmarkVO> bookmarkList;
 	
 	
-	int getBookmarkCnt() {
+	public int getBookmarkCnt() {
 		return bookmarkCnt;
 	}
-	void setBookmarkCnt(int bookmarkCnt) {
+	public void setBookmarkCnt(int bookmarkCnt) {
 		this.bookmarkCnt = bookmarkCnt;
 	}
-	List<BookmarkVO> getBookmarkList() {
+	public List<BookmarkVO> getBookmarkList() {
 		return bookmarkList;
 	}
-	void setBookmarkList(List<BookmarkVO> bookmarkList) {
+	public void setBookmarkList(List<BookmarkVO> bookmarkList) {
 		this.bookmarkList = bookmarkList;
 	}
-	private List<BookmarkVO> bookmarkList;
 }

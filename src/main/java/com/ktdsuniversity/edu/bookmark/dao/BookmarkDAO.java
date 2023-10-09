@@ -1,7 +1,10 @@
 package com.ktdsuniversity.edu.bookmark.dao;
 
-import com.ktdsuniversity.edu.bookmark.vo.BookmarkListVO;
+import java.util.List;
+
+import com.ktdsuniversity.edu.bookmark.vo.BookmarkVO;
 
 public interface BookmarkDAO {
-	public BookmarkListVO getAllBookmark();
+	public int getBookmarkAllCount();
+	public List<BookmarkVO> getAllBookmark();
 }
